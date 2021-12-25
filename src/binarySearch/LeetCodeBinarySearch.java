@@ -7,8 +7,6 @@ public class LeetCodeBinarySearch {
 		solver();
 	}
 	
-	
-	
 	public static int[] searchRange(int[] arr, int tar) {
         if(arr.length == 0){
             return new int[] {-1, -1};
