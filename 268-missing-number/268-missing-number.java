@@ -1,51 +1,34 @@
 class Solution {
-    
-    public int missingNumber(int[] arr) {
-        Arrays.sort(arr);
+    public int missingNumber(int[] nums) {
+        int idx = 0;
         
-        for(int i = 0; i < arr.length; i++){
-            if(arr[i] != i){
-                return i;
+        while(idx < nums.length){
+            if(nums[idx] == 0){
+                idx++;
+                continue;
+            }
+            
+            int correctIdx = nums[idx] - 1;
+            if(nums[idx] == nums[correctIdx]){
+                idx++;
+            }
+            else{
+                int temp = nums[idx];
+                nums[idx] = nums[correctIdx];
+                nums[correctIdx] = temp;
+            } 
+        }
+        
+        int zeroIdx = -1;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] == 0){
+                zeroIdx = i;
             }
         }
-        return arr.length;
+        if(zeroIdx == -1){
+            return 0;
+        }else{
+            return zeroIdx + 1;
+        }
     }
-    
-//     public int missingNumber(int[] arr) {
-//         if(arr.length == 1){
-//             if(arr[0] == 1){
-//                 return 0;
-//             }
-//             if(arr[0] == 0)
-//                 return 1;
-//         }
-        
-        
-//         int idx = 0;
-        
-//         while(idx < arr.length){
-//             if(arr[idx] == 0){
-//                 idx++;
-//                 continue;
-//             }
-            
-//             int correctIdx = arr[idx] - 1;
-            
-//             if(arr[idx] == arr[correctIdx]){
-//                 idx++;
-//             }else{
-//                 int temp = arr[idx];
-//                 arr[idx] = arr[correctIdx];
-//                 arr[correctIdx] = temp;
-//             }
-            
-//         }
-        
-//         for(int i = 0; i < arr.length; i++){
-//             if(arr[i] == 0){
-//                 return (i+1);
-//             }
-//         }
-//         return -1;
-//     }
 }
