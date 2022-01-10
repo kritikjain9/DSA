@@ -5,15 +5,15 @@ class Solution {
             return new int[]{nums[0]};
         }
         
-        int zeros = 0, ones = nums.length - 1;
-        while(zeros < ones){
-            if(nums[zeros] % 2 == 0){
-                zeros++;
+        int i = 0, j = 0;
+        while(i < nums.length){
+            if(nums[i] % 2 == 0){
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++; j++;
             }else{
-                int temp = nums[zeros];
-                nums[zeros] = nums[ones];
-                nums[ones] = temp;
-                ones--;
+                i++;
             }
         }
         return nums;
