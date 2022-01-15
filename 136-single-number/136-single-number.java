@@ -3,18 +3,14 @@ class Solution {
         if(nums.length == 1)
             return nums[0];
         
-        HashSet <Integer> set = new HashSet <>();
-        for(int num : nums){
-            if(set.contains(num)){
-                set.remove(num);
-            }else{
-                set.add(num);
-            }
+        Arrays.sort(nums);
+        
+        for(int i = 1; i < nums.length; i++){
+            if(nums[i] == nums[i-1])
+                i++;
+            else
+                return nums[i-1];
         }
-        
-        for(int element : set)
-            return element;
-        
-        return nums[0];
+        return nums[nums.length - 1];
     }
 }
