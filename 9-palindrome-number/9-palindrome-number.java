@@ -3,14 +3,20 @@ class Solution {
         if(x < 0)
             return false;
         
-        String str = String.valueOf(x);
-        System.out.println(str);
-        String rev = "";
+        int count = (int)Math.floor(Math.log10(x) + 1);
         
-        for(int i = str.length() - 1; i >= 0; i--){
-            rev += str.charAt(i);
+        int rev = 0, temp = x, pow = (int)Math.pow(10, count-1);
+        while(temp > 0){
+            int dig = temp % 10;
+            dig *= pow;
+            rev += dig;
+            
+            pow /= 10;
+            temp /= 10;
         }
         System.out.println(rev);
-        return str.equals(rev);
+        System.out.println(x);
+        return rev == x;
+        
     }
 }
