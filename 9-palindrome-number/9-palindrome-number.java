@@ -1,22 +1,15 @@
 class Solution {
-    public boolean isPalindrome(int x) {
-        if(x < 0)
+    public boolean isPalindrome(int num) {
+        if(num < 0 || (num != 0 && num % 10 == 0))
             return false;
         
-        int count = (int)Math.floor(Math.log10(x) + 1);
+        //checking half the number, so that we dont have to deal with integer overflow
         
-        int rev = 0, temp = x, pow = (int)Math.pow(10, count-1);
-        while(temp > 0){
-            int dig = temp % 10;
-            dig *= pow;
-            rev += dig;
-            
-            pow /= 10;
-            temp /= 10;
+        int rev = 0;
+        while(num > rev){
+            rev = rev * 10 + num % 10;
+            num /= 10;
         }
-        System.out.println(rev);
-        System.out.println(x);
-        return rev == x;
-        
+        return (num == rev || num == rev/10);
     }
 }
