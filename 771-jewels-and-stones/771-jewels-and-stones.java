@@ -3,7 +3,7 @@ class Solution {
         HashSet<Character> hs = new HashSet<>();
         int res = 0;
         
-        for(char j : jewels.toCharArray()){
+        for(Character j : jewels.toCharArray()){
             hs.add(j);
         }
         
