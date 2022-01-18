@@ -6,8 +6,11 @@ class Solution {
             char ch = stones.charAt(i);
             
             for(int j = 0; j < jewels.length(); j++){
-                if(ch == jewels.charAt(j))
+                if(ch == jewels.charAt(j)){
                     count++;
+                    break;
+                }
+                    
             }   
         }
         return count;
