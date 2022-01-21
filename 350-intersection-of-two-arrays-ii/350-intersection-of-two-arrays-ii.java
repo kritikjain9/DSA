@@ -8,17 +8,13 @@ class Solution {
             if(A[i] == B[j]){
                 list.add(A[i]);
                 i++; j++;
-            }else if(A[i] < B[j]){
+            }
+            else if(A[i] < B[j])
                 i++;
-            }else
+             else
                 j++;
         }
         
-        int[] res = new int[list.size()];
-        int idx = 0;
-        for(Integer num : list){
-            res[idx++] = num;
-        }
-        return res;
+        return list.stream().mapToInt(k -> k).toArray();
     }
 }
