@@ -1,4 +1,6 @@
-package binarySearch;
+package leetCode;
+
+import java.util.Arrays;
 
 public class LeetCodeBinarySearch {
 
@@ -121,11 +123,16 @@ public class LeetCodeBinarySearch {
 		public static int pivotInDuplicateRotated(int[] arr) {
 			int left = 0, right = arr.length - 1;
 			while(left <= right) {
-				if(arr[left] == arr[right]) {
+				int mid = left + (right - left)/2;
+				
+				if(arr[mid] == arr[left] && arr[mid] == arr[right]) {
+					//arr = [2, 9, 2, 2, 2]
+					/*so after ignoring first and last index
+					 *  arr = [9, 2, 2] */
+					
 					left += 1; right += 1;
 				}
 				
-				int mid = left + (right - left)/2;
 				if(mid < right && arr[mid] > arr[mid+1]) {
 					return mid;
 				}
@@ -145,10 +152,124 @@ public class LeetCodeBinarySearch {
 			}
 			return -1;
 		}
+		
+		public static int[] twoSum(int[] arr, int tar) {
+	        int[] res = new int[2];
+	        int st = 0, end = arr.length - 1;
+	        
+	        if(arr[st] + arr[end] == tar){
+	                res[0] = st + 1;
+	                res[1] = end + 1;
+	                return res;
+	            }
+	        
+	        while(st < end){
+	            int mid = st + (end - st) / 2;
+	            if(tar > arr[mid]){
+	                end = mid;
+	            }
+	            else if(tar <= arr[mid]){
+	                end = mid - 1;
+	            }else{
+	                st = mid + 1;
+	            }
+	 
+	        }
+	        return res;
+	    }
+		
+		
+		public static int ceil(int[] arr, int tar) {
+			int st = 0, end = arr.length - 1;
+			while(st < end) {
+				int mid = st + (end - st) / 2;
+				if(tar > arr[mid]) {
+					st = mid + 1;
+				} else if(tar < arr[mid]) {
+					end = mid;
+					//coz mid might be the ans
+				}else {
+					return mid;
+				}
+			}
+			if(st < arr.length - 1)
+				return st;
+			else 
+				return -1;
+		}
+		
+		public static int floor(int[] arr, int tar) {
+			int st = 0, end = arr.length - 1;
+			while(st <= end) {
+				int mid = st + (end - st) / 2;
+				if(tar > arr[mid]) {
+					st = mid + 1;
+				} else if(tar < arr[mid]) {
+					end = mid - 1;
+					//coz mid might be the ans
+				}else {
+					return mid;
+				}
+			}
+			if(end > 0)
+				return end;
+			else 
+				return -1;
+		}
+		
+		public static int firstOneIdx(int[] arr) {
+			int st = 0, end = 1;
+			while(arr[end] != 1) {
+				st = end;
+				end = end * 2;
+			}
+			
+			int res = -1;
+			while(st <= end) {
+					int mid = st + (end - st) / 2;
+				if(arr[mid] == 0) {
+					st = mid + 1;
+				}else if(arr[mid] == 1){
+					res = mid;
+					end = mid - 1;
+				}
+			}
+			return res;
+		}
+		
+		public static void cyclicSort(int[] arr) {
+			int idx = 0;
+			
+			while(idx < arr.length) {
+				int correct = arr[idx] - 1;
+				if(arr[idx] == arr[correct]) {
+					idx++;
+				}else {
+					int temp = arr[idx];
+					arr[idx] = arr[correct];
+					arr[correct] = temp;
+				}
+			}
+			
+		}
+		
 	
 	public static void solver() {
-		int[] arr = {4,4,5,5,6,9,1,2,2,3,4};
-		System.out.println(pivotInDuplicateRotated(arr));
+		int[] arr = {3, 4, 5, 1, 2};
+		cyclicSort(arr);
+		System.out.println("aaja");
+		System.out.println(Arrays.toString(arr));
+		System.out.println("aaja");
+//		int[] arr = {4,4,5,5,6,9,1,2,2,3,4};
+//		int[] arr = {0,0,0};
+//		System.out.println(Math.abs(-3));
+//		System.out.println(Math.abs(3));
+		
+//		System.out.println(firstOneIdx(arr));
+//		System.out.println(floor(arr, 10));
+//		System.out.println(ceil(arr, 4));
+		
+//		System.out.println(Arrays.toString(twoSum(arr, 9)));
 //		int[] nums = {0,1,2,4,2,1};
 //		System.out.println(binSearchInfinite(nums, 22));
 //		System.out.println(findInMountainArray(nums, 3));
