@@ -1,16 +1,22 @@
 class Solution {
     public int maxDistance(int[] arr) {
-        int max = Integer.MIN_VALUE;
-        for(int i = 0; i < arr.length; i++){
-            for(int j = 0; j < arr.length; j++){
-                if(i == j)
-                    continue;
-                
-                if(arr[i] != arr[j]){
-                    max = Math.max(max, Math.abs(i - j));
-                }
-            }
+        int n = arr.length;
+        
+        int fh = 0, lh = n - 1;
+        if(arr[fh] != arr[lh]){
+            return lh;
         }
-        return max;
+        
+        while(arr[fh] == arr[lh]){
+            lh -= 1;
+        }
+        
+        int s = 0, e = n - 1;
+        while(arr[s] == arr[e]){
+            s += 1;
+        }
+        s = n - s - 1;
+        return (s > lh) ? s : lh;
+        
     }
 }
