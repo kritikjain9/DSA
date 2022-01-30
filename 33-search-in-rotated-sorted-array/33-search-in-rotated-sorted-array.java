@@ -8,7 +8,6 @@ class Solution {
         }
         
         int pivot = findPivot(arr);
-        System.out.println(pivot);
         
         int leftSearch = binarySearch(arr, target, 0, pivot);
         if(leftSearch != -1)
