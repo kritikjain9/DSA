@@ -8,29 +8,24 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+
+//beautiful solution, but not recommended in real life
 class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1 == null || l2 == null)return l1 != null ? l1 : l2;
+        if(l1 == null)return l2;
+        else if(l2 == null)return l1;
         
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
-        ListNode prev, p1, p2;
-        prev = dummy;
-        p1 = l1;
-        p2 = l2;
-        
-        while(p1 != null && p2 != null){
-            if(p1.val <= p2.val){
-                prev.next = p1;
-                p1 = p1.next;
-            }
-            else{
-                prev.next = p2;
-                p2 = p2.next;
-            }
-            prev = prev.next;
+        ListNode pointer;
+        if(l1.val <= l2.val){
+            pointer = l1;
+            pointer.next = mergeTwoLists(l1.next, l2);
+        }
+        else{
+            pointer = l2;
+            pointer.next = mergeTwoLists(l1, l2.next);
         }
         
-        prev.next = (p1 != null ? p1 : p2);
-        return dummy.next;
+        return pointer;
     }
 }
