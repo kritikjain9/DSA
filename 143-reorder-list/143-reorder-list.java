@@ -48,7 +48,7 @@ class Solution {
         ListNode p1 = head;
         ListNode p2 = newHead;
         
-        while(p2 != null){
+        while(p1 != null && p2 != null){
             ListNode p1OriNext = p1.next;
             ListNode p2OriNext = p2.next;
             
