@@ -52,13 +52,18 @@ class Solution {
         ListNode p1 = head;
         ListNode p2 = nHead;
         
+        boolean res = true;
         while(p1 != null && p2 != null){
             if(p1.val != p2.val)
-                return false;
+                res = false;
             
             p1 = p1.next;
             p2 = p2.next;
         }
-        return true;
+        
+        nHead = reverse(nHead);
+        mid.next = nHead;
+        
+        return res;
     }
 }
