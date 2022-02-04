@@ -9,30 +9,56 @@
  * }
  */
 class Solution {
-    static ListNode left;
+    
+    public ListNode findMid(ListNode head){
+    if(head == null || head.next == null)return head;
+
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    public ListNode reverse(ListNode node){
+        if(node == null || node.next == null)return node;
+        
+        ListNode prev = null, curr = node, fwd = null;
+        
+        while(curr != null){
+            fwd = curr.next;
+            
+            curr.next = prev;
+            prev = curr;
+            curr = fwd;
+        }
+        return prev;
+    }
     
     public boolean isPalindrome(ListNode head) {
-        left = head;
+        if(head == null || head.next == null)return true;
         
-        boolean res = isPalindromeHelper(head);
-        return res;
-    }
-    
-    public boolean isPalindromeHelper(ListNode right){
-        if(right == null)return true;        //abhi maanke chalo ki true hai
+        ListNode mid = findMid(head);
+        ListNode nHead = mid.next;
         
-        boolean res = isPalindromeHelper(right.next);
-        if(res == false)
-            return false;
-        else{
-            if(right.val != left.val){
+        //link break kardi
+        mid.next = null;
+        
+        nHead = reverse(nHead);
+        
+        ListNode p1 = head;
+        ListNode p2 = nHead;
+        
+        while(p1 != null && p2 != null){
+            if(p1.val != p2.val)
                 return false;
-            }
-            else{
-                left = left.next;
-            }
+            
+            p1 = p1.next;
+            p2 = p2.next;
         }
-        return res;
+        return true;
     }
-    
 }
