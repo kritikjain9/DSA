@@ -53,7 +53,7 @@ class Solution {
         ListNode p2 = nHead;
         
         boolean res = true;
-        while(p1 != null && p2 != null){
+        while(p2 != null){
             if(p1.val != p2.val)
                 res = false;
             
