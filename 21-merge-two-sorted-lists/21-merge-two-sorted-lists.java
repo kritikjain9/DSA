@@ -30,17 +30,7 @@ class Solution {
             prev = prev.next;
         }
         
-        while(p1 != null){
-            prev.next = p1;
-            p1 = p1.next;
-            prev = prev.next;
-        }
-        
-        while(p2 != null){
-            prev.next = p2;
-            p2 = p2.next;
-            prev = prev.next;
-        }
+        prev.next = (p1 != null ? p1 : p2);
         return dummy.next;
     }
 }
