@@ -24,22 +24,6 @@ public class Solution {
             if(slow == fast)
                 return true;   
         }
-        
         return false;
     }
-    
-//     public boolean hasCycle(ListNode head) {
-//         if(head == null || head.next == null)return false;
-
-//         HashSet<ListNode> hs = new HashSet<>();
-        
-//         ListNode temp = head;
-//         while(temp != null){
-//             if(hs.contains(temp))
-//                 return true;
-            
-//                 hs.add(temp);
-//             temp = temp.next;
-//         }
-//         return false;
 }
