@@ -35,22 +35,14 @@ class Solution {
             idx--;
         }
         
-        // if(prev.next != null)
             prev.next = prev.next.next;
     }
-    
-    public void removeFirst(ListNode head){
-      
-        ListNode fwd = head.next;
-        head.next = null;
-        head = fwd;
-    }
-    
+       
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head == null || head.next == null)return null;
         
         int len = size(head);
-        // System.out.println(len);
+     
         if(n == len){
             return head.next;
         }else if(n == 0){
