@@ -10,15 +10,12 @@
  */
 class Solution {
     public int getDecimalValue(ListNode head) {
-        String res = "";
+        String num = "";
         ListNode temp = head;
-        
         while(temp != null){
-            res += temp.val;
+            num += temp.val;
             temp = temp.next;
         }
-          
-        int decimal=Integer.parseInt(res,2);  
-        return decimal;  
+        return Integer.parseInt(num, 2);
     }
 }
