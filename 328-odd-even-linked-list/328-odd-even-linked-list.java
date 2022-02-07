@@ -29,8 +29,6 @@ class Solution {
             p2.next = p2.next.next;
             p2 = p2.next;
         }
-        p1.next = null;
-        // p2.next = null;
         
         p1.next = newNext;
         return head;
