@@ -10,38 +10,27 @@
  */
 class Solution {
     
-    public ListNode findKthEnd(ListNode head, int k){
-        ListNode slow = head, fast = head;
-        while(k > 1){
-            fast = fast.next;
-            k--;
-        }
+    public ListNode swapNodes(ListNode head, int k) {
+        if(head == null || head.next == null)return head;
         
-        while(fast.next != null){
-            fast = fast.next;
-            slow = slow.next;
-        }
-        return slow;
-    }
-    
-    public ListNode findKthStart(ListNode head, int k){
-        ListNode pre = head;
+        ListNode pre = head, slow = head;
         while(k > 1){
             pre = pre.next;
             k--;
         }
-        return pre;
-    }
-    
-    public ListNode swapNodes(ListNode head, int k) {
-        if(head == null || head.next == null)return head;
         
-        ListNode kthFromStart = findKthStart(head, k);
-        ListNode kthFromEnd = findKthEnd(head, k);
+        ListNode kStart = pre;
         
-        int temp = kthFromStart.val;
-        kthFromStart.val = kthFromEnd.val;
-        kthFromEnd.val = temp;
+        while(pre.next != null){
+            pre = pre.next;
+            slow = slow.next;
+        }
+        
+        ListNode kEnd = slow;
+        
+        int temp = kStart.val;
+        kStart.val = kEnd.val;
+        kEnd.val = temp;
         
         return head;
     }
