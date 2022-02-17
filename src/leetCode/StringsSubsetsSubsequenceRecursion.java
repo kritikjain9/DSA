@@ -119,7 +119,7 @@ public class StringsSubsetsSubsequenceRecursion {
 		}
 		
 		char ch = str.charAt(0);
-		
+			
 		ArrayList<String> left = returnAsciiSubsets(str.substring(1), res);
 		ArrayList<String> right = returnAsciiSubsets(str.substring(1), res + ch);
 		ArrayList<String> mid = returnAsciiSubsets(str.substring(1), res + (int)ch);
@@ -130,11 +130,111 @@ public class StringsSubsetsSubsequenceRecursion {
 		return left;
 	}
 	
-
+	
+	public static void iterativeSubsets(int[] arr) {
+		//wrong answer - these are subSequences, not subsets
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = i+1; j <= arr.length; j++) {
+				
+				for(int p = i; p < j; p++)
+					System.out.print(arr[p] + " ");
+				System.out.println();
+			}
+		}
+	}
+	
+	public static void __iterativeSubsets(int[] arr) {
+		for(Integer i = 0; i < (int)Math.pow(2, arr.length); i++) {
+			String str = Integer.toBinaryString(i);
+//			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+//			System.out.println(i);
+//			for(char ch : str.toCharArray()) {
+//				System.out.println(ch - '0');
+//			}
+//			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+			char[] carr = str.toCharArray();
+			for(int j = 0; j < carr.length; j++) {
+				char c = carr[j];
+				if(c - '0' == 1) {
+					System.out.print(arr[j] + "\t");
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public static List<List<Integer>> ____iterativeSubsets(int[] arr){
+		List<List<Integer>> res = new ArrayList<>();
+		res.add(new ArrayList<>());
+		
+		
+		
+		return res;
+	}
+	
+        public static boolean isValid(String s) {
+        
+	        Stack<Character> st = new Stack<>();
+	        for(int i = 0; i < s.length(); i++){
+	            char ch = s.charAt(i);
+	        // for(char ch : s.toCharArray()){
+	            if(ch == '(' || ch == '[' || ch == '{'){
+	                st.push(ch);
+	            }
+		            else if(ch == ')' || ch == ']' || ch == '}'){
+		                if(st.size() == 0)
+		                    return false;
+		            else if(ch == ')' && st.peek() != '('){
+		                return false;
+		            }
+		            else if(ch == '}' && st.peek() != '{'){
+		                return false;
+		            }
+		            else if(ch == ']' && st.peek() != '['){
+		                return false;
+		            }else {
+		            	st.pop();	            	
+		            }
+	            }
+	        }
+	        if(st.size() != 0)
+	            return false;
+	        
+	        return true;
+        }
+        
+        public static void printPermutations(String str, char[] boxes, int p) {
+        	System.out.println("```````````````````");
+        	if(p == str.length()) {
+        		for(char c : boxes) {
+        			System.out.print(c + "\t");
+        		}
+        		System.out.println();
+        	}
+        	
+        	System.out.println("```````````````````");
+        	
+        	for(int i = 0; i < str.length(); i++) {
+        		char ch = str.charAt(i);
+        		if(boxes[i] == '\u0000') {
+        			boxes[i] = ch;
+        			printPermutations(str, boxes, p++);
+        		}
+        	}
+        	System.out.println("```````````````````");
+        }
+	
 		public static void solver() {
-	//	System.out.println(printSubsets("abc"));
-	//	printAsciiSubsets("ab ","");
-			System.out.println(returnAsciiSubsets("ab", ""));
+			printPermutations("abc", new char[3], 0);
+			
+//			System.out.println(isValid("(])"));
+			
+//			int[] arr = {1, 2, 3};
+//			List<List<Integer>> res = ____iterativeSubsets(arr);
+//			for(List<Integer> list : res) {
+//				System.out.println(list);
+//			}
+		
 		}
 	
 }
