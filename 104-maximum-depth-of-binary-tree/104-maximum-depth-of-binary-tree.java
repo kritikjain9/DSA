@@ -21,17 +21,13 @@ class Solution {
         
         int ht = Integer.MIN_VALUE;
         
-        if(root.left != null){
-            int leftRes = maxDepth(root.left);
-            ht = Math.max(leftRes, ht);
-        }
+        if(root.left != null)
+            ht = Math.max(maxDepth(root.left), ht);
         
-        if(root.right != null){
-            int rightRes = maxDepth(root.right);
-            ht = Math.max(rightRes, ht);
-        }
+        
+        if(root.right != null)
+            ht = Math.max(maxDepth(root.right), ht);
             
-        // ht = Math.max(leftRes, rightRes);
         return ht + 1;
     }
 }
