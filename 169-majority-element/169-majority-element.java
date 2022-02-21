@@ -1,22 +1,20 @@
 class Solution {
-    public int majorityElement(int[] nums) {
-        int freq = nums.length / 2;
-        int majEle = -1;
+    public int majorityElement(int[] arr) {
+//         int tar = arr.length / 2;
+//         HashMap<Integer, Integer> hm = new HashMap<>();
         
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        for(int num : nums){
-            if(hm.containsKey(num)){
-                hm.put(num, hm.get(num) + 1);
-            }else{
-                hm.put(num, 1);
-            }
+//         for(int i = 0; i < arr.length; i++){
+//             if(hm.containsKey(arr[i])){
+//                 hm.put(arr[i], hm.get(arr[i]) + 1);
+//             }
+//             else
+//                 hm.put(arr[i], 1);
             
-            if(hm.get(num) > freq){
-                freq = hm.get(num);
-                majEle = num;
-            }
-            
-        }
-        return majEle;
+//             if(hm.get(arr[i]) >= tar)
+//                     return arr[i];
+//         }
+//         return -1;
+        Arrays.sort(arr);
+        return arr[arr.length / 2];
     }
 }
