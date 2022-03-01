@@ -34,20 +34,23 @@ class Recursion {
 
 
 // avoid space at the starting of the string in "move disk....."
-class Hanoi {
-    
-    
+class Hanoi{
+
+
+    public void Tower(int N,int from,int to,int aux)
+    {
+        if(N==0)
+        {
+            return ;
+        }
+        Tower(N-1, from, aux, to);
+        System.out.println("move disk " + N + " from rod "+ from +" to rod " + to);
+        Tower(N-1, aux, to, from);
+    }
 
     public long toh(int N, int from, int to, int aux) {
         // Your code here
-        if(N==0)
-        {
-            return 0;
-        }
-        long upperFirst=toh(N-1, from, aux, to);
-        System.out.println("move disk " + N + " from rod "+ from +" to rod " + to);
-        
-        long upperSecond=toh(N-1, aux, to, from);
+        Tower(N, from, to, aux);
         
         return (long)Math.pow(2,N)-1;
     }
