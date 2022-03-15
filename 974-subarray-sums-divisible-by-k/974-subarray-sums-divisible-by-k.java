@@ -1,34 +1,25 @@
 class Solution {
-    public int subarraysDivByK(int[] arr, int k) {
-        if(arr.length == 1 && Math.abs(arr[0]) == k){
-            return 1;
-        }else if(arr.length == 1 && arr[0] != k){
-            return 0;
-        }
+    public int subarraysDivByK(int[] nums, int k) {
+        int sum = 0;
+        int res = 0;
         
-        //negative ka why kyun use ho raha hai
-        int sum = 0, res = 0;
         HashMap<Integer, Integer> map = new HashMap<>();
-        
         map.put(sum, 1);
         
-        for(int val : arr){
+        for(int val : nums){
             sum += val;
             
-            //hashmap processing
-            int foundVal = sum % k;
-            if(foundVal < 0){
-                foundVal += k;
+            int modVal = sum % k;
+            if(modVal < 0){
+                modVal += k;
             }
             
-            if(!map.containsKey(foundVal)){
-                map.put(foundVal, 1);
+            if(map.containsKey(modVal)){
+                res += map.get(modVal);
+                map.put(modVal, map.get(modVal) + 1);
+            }else{
+                map.put(modVal, 1);
             }
-            else{
-                res += map.get(foundVal);
-                map.put(foundVal, map.get(foundVal) + 1);
-            }
-            
         }
         return res;
     }
