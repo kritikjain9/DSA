@@ -14,17 +14,22 @@ class Solution {
         return res >= 2;
     }
     
-    public int gcd(int a, int b) {
-        return b > 0 ? gcd(b, a % b) : a;
-    }
-    
-    // public int gcd(int a, int b){
-    //     while(){
-    //         int rem = a % b;
-    //         a = b;
-    //         b = rem;
-    //     }
-    //     return a;
+    // public int gcd(int a, int b) {
+    //     return b > 0 ? gcd(b, a % b) : a;
     // }
+    
+    public int gcd(int a, int b){
+        
+        while(a != 0){
+            if(b > 0){
+                int rem = a % b;
+                a = b;
+                b = rem;
+            }else{
+                return a;
+            }
+        }
+        return b;
+    }
     
 }
