@@ -12,9 +12,9 @@ class Solution {
         
         for(int i = 0; i < t.length(); i++){
         char ch = t.charAt(i);
-            if(arr[ch - 'a'] > 0){
+            // if(arr[ch - 'a'] > 0){
                 arr[ch - 'a']--;
-            }
+            // }
         }
         
         for(int val : arr){
