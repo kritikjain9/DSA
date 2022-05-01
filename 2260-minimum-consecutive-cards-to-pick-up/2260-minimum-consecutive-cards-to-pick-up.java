@@ -14,11 +14,8 @@ class Solution {
                 int cardsPicked = (currIdx - prevIdx) + 1;
                 minCards = Math.min(minCards, cardsPicked);
                 
-                map.put(card, idx);
             }
-            else{
-                map.put(card, idx);    
-            }
+                map.put(card, idx);            
         }
         
         return (minCards == Integer.MAX_VALUE ? -1 : minCards);
