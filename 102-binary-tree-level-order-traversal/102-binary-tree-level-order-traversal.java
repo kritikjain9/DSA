@@ -14,36 +14,60 @@
  * }
  */
 class Solution {
-    public List<List<Integer>> levelOrder(TreeNode node) {
+    public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> masterList = new ArrayList<>();
-        if(node == null){
-            return masterList;   
-        }
+        if(root == null)
+            return masterList;
         
-        Queue<TreeNode> qu = new ArrayDeque<>();
-        qu.add(node);
-
-        while(qu.size() > 0){
-            int process = qu.size();
-            List<Integer> currList = new ArrayList<>();
+        
+        TreeNode dummy = new TreeNode(Integer.MIN_VALUE);
+        Queue<TreeNode> queue = new ArrayDeque();
+        queue.add(root);
+        // queue.add(dummy);
+        // System.out.println(queue);
+        while(queue.size() > 0){
+            List<Integer> list = new ArrayList<>();
             
-            for(int i = 0; i < process; i++){
-                TreeNode temp = qu.remove();
-                // System.out.print(temp.data + " ");
-                currList.add(temp.val);
-
-                if(temp.left != null){
-                    qu.add(temp.left);
-                }
-
-                if(temp.right != null){
-                    qu.add(temp.right);
-                }
-            }
-            // System.out.println();
-            masterList.add(currList);
+            int count = queue.size();
+            
+            for(int i = 0; i < count; i++){
+                TreeNode rem = queue.remove();
+                list.add(rem.val);       
+                    if(rem.left != null){
+                        queue.add(rem.left);
+                    }
+                    if(rem.right != null){
+                        queue.add(rem.right);
+                    }
+              }
+            masterList.add(list);
         }
-        
         return masterList;
     }
 }
+
+
+
+
+        
+//         while(queue.size() > 0){
+//             TreeNode rem = queue.remove();
+            
+//             if(rem.val == dummy.val){
+//                 masterList.add(list);
+//                 list = new ArrayList<>();
+//                 queue.add(dummy);
+//             }
+//             else{
+                
+//                 list.add(rem.val);       
+//                 if(rem.left != null){
+//                     queue.add(rem.left);
+//                 }
+                
+//                 if(rem.right != null){
+//                     queue.add(rem.right);
+//                 }
+//             }
+//         }
+        // System.out.println(queue);
