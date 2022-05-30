@@ -19,24 +19,24 @@ class Node {
 
 class Solution {
     
-    public List<Integer> print(Node root, List<Integer> res){
-        if(root == null)return new ArrayList<>();
-        
-        // System.out.print(root.val);
-        res.add(root.val);
-        for(Node child : root.children){
-            print(child, res);
-        }
-        return res;
-    }
+    public List<Integer> res = new ArrayList<>();    
     
     public List<Integer> preorder(Node root) {
-        List<Integer> ans = new ArrayList<>();
-        List<Integer> res = print(root, ans);
-        return ans;
+        if(root == null){
+            return res;
+        }
+        
+        res.add(root.val);
+        
+        for(Node child : root.children){
+            preorder(child);
+        }
+        
+        // System.out.print(root.val + " ");
+        
+        return res;
     }
 }
-
 
 
 
