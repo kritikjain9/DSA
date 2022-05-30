@@ -19,23 +19,28 @@ class Node {
 
 class Solution {
     
-    public List<Integer> helper(Node root, List<Integer> res){
-        if(root == null)return new ArrayList<>();
-        
-        for(Node child : root.children){
-            helper(child, res);
-        }
-        
-        res.add(root.val);
-        return res;        
-    }
+    public List<Integer> res = new ArrayList<>();
     
     public List<Integer> postorder(Node root) {
-        List<Integer> ans = new ArrayList<>();
-        List<Integer> res = helper(root, ans);
-        return ans;
+        
+        if(root == null){
+            return res;
+        }
+        
+        for(Node child : root.children){
+            postorder(child);
+        }
+        
+        // System.out.print(root.val + " ");
+        res.add(root.val);
+        
+        return res;
     }
 }
+
+
+
+
 
 
 
