@@ -22,31 +22,52 @@ class Node {
 */
 
 class Solution {
-
     public Node connect(Node root) {
-        if (root == null) {
+        if(root == null){
             return null;
-        }
-
+        }       
+        
         Node ptr = root;
-        while (ptr != null) {
-            Node pt = ptr;
-            while (pt != null) {
-                if(pt.left != null){
-                   pt.left.next = pt.right;                    
+        Node head = null;
+        Node tail = null;
+        
+        while(ptr != null){
+            
+            while(ptr != null){
+                //left ka kaam
+                if(ptr.left != null){
+                    //agar head null hai, iska matlab LL ban-ne ka kaam nahi shuru hua hai
+                    if(head == null){
+                        head = tail = ptr.left;
+                    }
+                    //agar head null nahi hai, iska matlab LL ban-ne ka kaam shuru ho chuka hai                 
+                    else{
+                        tail.next = ptr.left;
+                        tail = tail.next;
+                    }
                 }
-
-                if (pt.next != null && pt.right != null) {
-                    pt.right.next = pt.next.left;
+                //right ka kaam
+                if(ptr.right != null){
+                    if(head == null){
+                        head = tail = ptr.right;
+                    }else{
+                        tail.next = ptr.right;
+                        tail = tail.next;
+                    }
                 }
-
-                pt = pt.next;
+                ptr = ptr.next;
             }
-            ptr = ptr.left;
+            //ptr, right se null ho jaega. Now we will move down
+            ptr = head;            
+            head = null;
+            tail = null;
         }
         return root;
     }
 }
+
+
+
 
 
 
