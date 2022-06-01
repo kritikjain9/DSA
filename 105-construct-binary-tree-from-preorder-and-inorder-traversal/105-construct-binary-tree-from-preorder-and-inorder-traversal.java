@@ -14,38 +14,37 @@
  * }
  */
 class Solution {
-    public HashMap<Integer, Integer> map = new HashMap<>(); //Value -> index
-
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        fillHM(inorder);
-        return construct(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
-    }
-
-    public void fillHM(int[] inorder) {
-        for (int i = 0; i < inorder.length; i++) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < inorder.length; i++){
             map.put(inorder[i], i);
         }
-    }
-
-    public TreeNode construct(int[] preorder, int[] inorder, int pL, int pH, int iL, int iH) {
-        if(pL > pH || iL > iH){
-            return null;
-        }
         
-        TreeNode root = new TreeNode(preorder[pL]);
-        int pos = map.get(preorder[pL]);
-        int leftSize = pos - iL;
-        int rightSize = iH - pos;
         
-        root.left = construct(preorder, inorder, pL+1, pL + leftSize, iL, pos - 1);
-        root.right = construct(preorder, inorder, pL + leftSize + 1, pH, pos + 1, iH);
-        
+        TreeNode root = construct(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1, map);
         return root;
     }
+    
+    
+    public TreeNode construct(int[] preorder, int[] inorder, int preStart, int preEnd, int inStart, int inEnd, HashMap<Integer, Integer> map){
+        if(preStart > preEnd || inStart > inEnd){
+            return null; 
+        }
+        
+        TreeNode root = new TreeNode(preorder[preStart]);
+        
+        int rootIdx = map.get(preorder[preStart]);
+        // int leftNodes = rootIdx - 1;
+        int leftNodes = rootIdx - inStart;
+        
+        root.left = construct(preorder, inorder, (preStart + 1), (preStart + leftNodes), inStart, rootIdx - 1, map);
+        root.right = construct(preorder, inorder, (preStart + leftNodes + 1), (preEnd), rootIdx + 1, inEnd, map);
+
+        return root;
+    }
+    
 }
-
-
-
 
 
 
