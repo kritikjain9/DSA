@@ -37,9 +37,11 @@ class Solution {
         if(root == null){
             return MONITORED;
         }
-        // if(root.left == null && root.right == null){
-        //     return NOT_MONITORED;
-        // }
+        
+        //leaf nodes hamesha hi not-monitored rahenge
+        if(root.left == null && root.right == null){
+            return NOT_MONITORED;
+        }
         
         int lRes = helper(root.left);
         int rRes = helper(root.right);
