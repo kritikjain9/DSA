@@ -37,14 +37,20 @@ class Solution {
         if(root == null){
             return MONITORED;
         }
+        if(root.left == null && root.right == null){
+            return NOT_MONITORED;
+        }
         
         int lRes = helper(root.left);
         int rRes = helper(root.right);
 
+        //sabse high precedence non-monitored nodes ki hai
         if(lRes == NOT_MONITORED || rRes == NOT_MONITORED){
             cCount++;
             return CAMERA;
-        }else if(lRes == CAMERA || rRes == CAMERA){
+        }
+        //uske baad precedence camera waale nodes ki hai        
+        else if(lRes == CAMERA || rRes == CAMERA){
             return MONITORED;
         }else{
             return NOT_MONITORED;
