@@ -9,7 +9,17 @@
  */
 public class Codec {
     
-   
+   public class Pair{
+        TreeNode node;
+        int state;
+        
+        Pair(){}
+        
+        Pair(TreeNode node, int state){
+            this.node = node;
+            this.state = state;
+        }
+    }
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -36,18 +46,7 @@ public class Codec {
         helper(root.right, sb);
     }
     
-     public class Pair{
-        TreeNode node;
-        int state;
-        
-        Pair(){}
-        
-        Pair(TreeNode node, int state){
-            this.node = node;
-            this.state = state;
-        }
-        
-    }
+     
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
