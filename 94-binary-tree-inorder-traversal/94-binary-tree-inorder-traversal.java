@@ -14,54 +14,27 @@
  * }
  */
 class Solution {
+    
+    List<Integer> list = new ArrayList<>();
+    
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> master = new ArrayList<>();
-        
         if(root == null){
-            return master;
+            return list;
         }
         
-        TreeNode temp = root;
-        
-        while(temp != null){
-            //left side
-            if(temp.left == null){
-                master.add(temp.val);
-                temp = temp.right;
-            }
-            else{
-                TreeNode iop = temp.left;       //maan liya
-                while(iop.right != null && iop.right != temp){
-                    iop = iop.right;
-                }
-                
-                //yahaan pe check karna hai ki pehli baar aa rahe hain ya nahi
-                if(iop.right == null){
-                    iop.right = temp;
-                    temp = temp.left;
-                }else{
-                    //iop.right == temp -> already processed
-                    iop.right = null;
-                    master.add(temp.val);
-                    temp = temp.right;
-                }
-                
-            }
-            
-            //right side
-        }
-        return master;
+        helper(root);
+        return list;
     }
+    
+    public void helper(TreeNode root){
+        if(root == null){
+            return;
+        }
+        
+        helper(root.left);
+        // System.out.print(root.val + " ");
+        list.add(root.val);
+        helper(root.right);
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
