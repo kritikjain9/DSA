@@ -20,7 +20,7 @@ class Solution {
             else if(wallA < wallB){
                 left++;
             }else{
-                left++;
+                right--;
             }
         }
         
