@@ -1,8 +1,5 @@
 class Solution {
     public int maxChunksToSorted(int[] arr) {
-        // if(arr.length == 1){
-        //     return 1;
-        // }
         
         int[] minFromRight = new int[arr.length];
         minFromRight[arr.length - 1] = arr[arr.length - 1];
