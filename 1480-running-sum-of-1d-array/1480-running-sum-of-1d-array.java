@@ -1,8 +1,12 @@
 class Solution {
-    public int[] runningSum(int[] arr) {
-        for(int i = 1; i < arr.length; i++){
-            arr[i] = arr[i] + arr[i-1];
+    public int[] runningSum(int[] nums) {
+        int[] res = new int[nums.length];
+        int run = 0;
+        for(int i = 0; i < nums.length; i++){
+            run += nums[i];
+            res[i] = run;
         }
-        return arr;
+        
+        return res;
     }
 }
