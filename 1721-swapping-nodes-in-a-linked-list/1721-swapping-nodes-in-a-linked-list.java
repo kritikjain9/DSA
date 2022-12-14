@@ -9,28 +9,30 @@
  * }
  */
 class Solution {
-    
     public ListNode swapNodes(ListNode head, int k) {
-        if(head == null || head.next == null)return head;
+        if(head.next == null)
+            return head;
         
-        ListNode pre = head, slow = head;
-        while(k > 1){
-            pre = pre.next;
-            k--;
+        int pos = k;
+        
+        ListNode fwd = head, bwd = head;
+        while(pos-- > 0){
+            fwd = fwd.next;
         }
         
-        ListNode kStart = pre;
-        
-        while(pre.next != null){
-            pre = pre.next;
-            slow = slow.next;
+        while(fwd != null){
+            fwd = fwd.next;
+            bwd = bwd.next;
         }
         
-        ListNode kEnd = slow;
+        ListNode newNode = head;
+        while(k-- > 1){
+            newNode = newNode.next;
+        }
         
-        int temp = kStart.val;
-        kStart.val = kEnd.val;
-        kEnd.val = temp;
+        int data = newNode.val;
+        newNode.val = bwd.val;
+        bwd.val = data;
         
         return head;
     }
